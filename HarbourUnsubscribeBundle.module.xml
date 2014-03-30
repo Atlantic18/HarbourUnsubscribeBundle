@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<orm-designer version="2.3.0.826" mvc="Symfony2" orm="Doctrine2">
+  <module name="UnsubscribeBundle" import-format="Doctrine2Php" import-path="Entity" uuid="3987ee00-3445-480a-afb5-f686fa220e71">
+    <entity name="Unsubscribe" uuid="e037a376-83ef-451c-b9c8-6fcbc4b2aaa9">
+      <field name="id" type="integer" required="true" primary="true" auto-increment="true" uuid="5e4ec49a-7e1d-4d49-8ed4-c9a9010188fb"/>
+      <field name="email" type="string" size="255" required="true" uuid="dbdea165-92de-4514-80ec-857843340679"/>
+      <field name="email_group" type="string" size="32" required="true" uuid="3ea89921-8c32-4146-9a5f-6f3dce69258c"/>
+      <field name="hash" description="sha1 unique unsubscribe hash" type="string" size="40" required="true" unique="true" uuid="c14cea32-0c96-4b8b-a15f-07b32faa13bc"/>
+      <field name="unsubscribed_at" type="datetime" uuid="59da2119-3f6c-4dcd-b8bc-e574d07256a2"/>
+      <field name="unsubscribed_ip" type="integer" uuid="cf597465-040b-4ca0-afd8-0b11790e716a"/>
+      <field name="account_id" type="integer" required="true" uuid="1af4b52d-8441-4b1e-a753-d0672de8660c"/>
+      <index name="EmailGroupIndex" unique="true">
+        <index-field name="email"/>
+        <index-field name="email_group"/>
+      </index>
+      <index name="HashIndex" unique="true">
+        <index-field name="hash"/>
+      </index>
+      <orm-attributes>
+        <attribute name="table">harbour_unsubscribe</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="Unsubscribe" to="Account" caption="Unsubscriber account" inverse-alias="account" uuid="12d45b11-d7c7-485c-afb6-ab161fbf537f">
+      <association-field from="account_id" to="id"/>
+    </association>
+    <orm-attributes>
+      <attribute name="namespace">Harbour\UnsubscribeBundle\Entity</attribute>
+      <attribute name="filename-format">entity-name-only</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <module uuid="3987ee00-3445-480a-afb5-f686fa220e71" bk-color="4294308862" position-x="25" position-y="875" size-x="0" size-x2="575" size-y="0" size-y2="225"/>
+    <entity uuid="e037a376-83ef-451c-b9c8-6fcbc4b2aaa9" position-x="50" position-y="50" size-x="0" size-x2="138" size-y="0" size-y2="101"/>
+  </visual-data>
+</orm-designer>
